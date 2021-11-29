@@ -50,10 +50,24 @@ export default function App() {
         saveToDos(newToDos);
         },
       },
-    ]);
-
-    
+    ]);    
   };
+  const completedToDo = (key) => {
+    Alert.alert("Completed", "Are you sure?", [
+      {text: "No", style: "destructive"},
+      {text: "Yes", onPress: () => {
+        const newToDos = {...toDos};
+        delete newToDos[key];
+        
+        setToDos(newToDos);
+        saveToDos(newToDos);
+        },
+      },
+    ]); 
+  };
+  
+    
+  
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -79,6 +93,9 @@ export default function App() {
             toDos[key].working === working ? (
             <View style={styles.toDo} key={key}>
               <Text style={styles.toDoText}>{toDos[key].text}</Text>
+              <TouchableOpacity onPress={() => completedToDo(key)}>
+                <Fontisto name="trash" size={18} color={theme.grey} />
+              </TouchableOpacity>
               <TouchableOpacity onPress={() => deleteToDo(key)}>
                 <Fontisto name="trash" size={18} color={theme.grey} />
               </TouchableOpacity>
