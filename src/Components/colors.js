@@ -1,6 +1,6 @@
 export const weatherTheme = {
-    weeklyBorder: "#696969",    // dimgrey
-    border: "#2f4f4f",  // darkslategrey
+    weeklyBorder: "#e6e1e1",    // dimgrey
+    border: "#e6e1e1",  // darkslategrey
 };
 
 export const diaryTheme = {
@@ -13,7 +13,7 @@ export const diaryTheme = {
 
 export const toDoTheme = {
     checkBox: "#000000",    // black
-    addToDoBox: "#BFBFBF",   // lightgray
+    addToDoBox: "#e0e0e0",   // lightgray
     deleteIcon: "#E00000",  // red
     editIcon: "#000000",    // black
     toDoBg: "#FFFFFF",  // white

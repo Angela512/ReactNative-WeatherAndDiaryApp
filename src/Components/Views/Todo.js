@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView, Dimensions, Alert, ImageBackground } from 'react-native';
-import { toDoTheme } from "./colors";
+import { toDoTheme } from "../colors";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Feather } from '@expo/vector-icons';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import IMGBG from './Images/ToDoBg.jpg';
+import IMGBG from '../../Images/ToDoBg.jpg';
 
 const STORAGE_KEY = "@toDos";
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
@@ -47,18 +47,26 @@ export default function Todo() {
 
 
   const saveToDos = async(toSave) => {
-    //convert toDos to string
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
   };
+
   const loadToDos = async() => {
-    const s = await AsyncStorage.getItem(STORAGE_KEY);
-    //make items object
-    setToDos(JSON.parse(s));
+     try{
+      const s = await AsyncStorage.getItem(STORAGE_KEY);
+      if(s){
+        setToDos(JSON.parse(s));
+      }
+    }
+    catch(e){
+      Alert.alert("Error", "Todo Function is not loaded!");
+      console.log(e);
+    }
   };
   
   useEffect(() => { //component가 mount될때 실행
     loadToDos();
   }, []);
+
   const addToDo = async() => {
     if(text === ""){
       return;
@@ -72,17 +80,33 @@ export default function Todo() {
     await saveToDos(newToDos);
     setText("");
   };
+
   const deleteToDo = (key) => {
-    Alert.alert("Delete To Do", "Are you sure?", [
-      {text: "Cancel", style: "destructive"},
-      {text: "Yes", onPress: () => {
-        const newToDos = {...toDos};
+    if(Platform.OS === "web"){
+      const ok = confirm("Do you want to delete this TO DO?");
+      if(ok){
+        const newToDos = { ...toDos };
         delete newToDos[key];
         setToDos(newToDos);
         saveToDos(newToDos);
+      }
+    } 
+    else{
+      Alert.alert(
+        "Delete", 
+        "Are you sure?", [
+        { text: "Cancel", style: "destructive" },
+        {
+          text: "Yes",
+          onPress: () => {
+            const newToDos = { ...toDos };
+            delete newToDos[key];
+            setToDos(newToDos);
+            saveToDos(newToDos);
+          },
         },
-      },
-    ]);    
+      ]);
+    }
   };
 
   
@@ -93,7 +117,7 @@ export default function Todo() {
       <StatusBar style="auto" />
       <ImageBackground source={IMGBG} style={styles.image}>
       <View style={styles.date}>
-        <Text style={styles.dateText}>{mon[month]}. {date}</Text>
+        <Text style={styles.dateText}>{mon[month]} {date}</Text>
       </View>
       
       <View style={styles.toDoBox}>
@@ -143,7 +167,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   date: {
-    flex: 1.5,
+    flex: 0.7,
     paddingVertical: 10,
     marginLeft: 10,
     alignItems: 'flex-start',
@@ -166,7 +190,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 20,
     borderRadius: 15,
-    marginVertical: 20,
+    marginVertical: 5,
     fontSize: 18,
   },
   toDo: {

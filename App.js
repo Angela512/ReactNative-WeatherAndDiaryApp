@@ -20,7 +20,7 @@ export default function App() {
           tabBarActiveTintColor: "black"
         }}>
         <Tab.Screen
-          name="Today's Weather is like"
+          name="Today's Weather"
           component={ Weather }
           options={{
             tabBarLabel: "Weather",
@@ -30,7 +30,7 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name="My To Do List is like"
+          name="My To-Do List"
           component={ ToDo }
           options={{
             tabBarLabel: "To Do",
@@ -40,7 +40,7 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name="My Day was like"
+          name="Today's Log"
           component={ Diary }
           options={{
             tabBarLabel: "Diary",
@@ -50,7 +50,7 @@ export default function App() {
           }}
           />
         <Tab.Screen
-          name="My Log History looks like"
+          name="My Log History"
           component={ History }
           options={{
             tabBarLabel: "Personal Log",
