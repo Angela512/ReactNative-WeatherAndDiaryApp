@@ -4,7 +4,7 @@ import { ImageBackground, StyleSheet, ScrollView, Text, View, Alert, TouchableOp
 import IMGBG from '../../Images/HistoryBg.jpg';
 import { historyTheme } from '../colors';
 import { FontAwesome5 } from '@expo/vector-icons';
-
+import { Fontisto } from '@expo/vector-icons';
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const STORAGE_KEY = "@dailyLog";
@@ -73,18 +73,21 @@ export default function History(){
       <ImageBackground source={IMGBG} style={styles.image}>
         <ScrollView contentContainerStyle={styles.logBox}>
           {diary && Object.keys(diary).map((key) =>
+          
             <View key={key} style={styles.diary}>
               <View style={styles.dayAndMoodBox}>
                 <Text style={styles.logDay}>{key.substring(4, 15)}</Text>
                 <FontAwesome5 name={moods[diary[key].mood]} size={17} color="black"/>
               </View>
               <Text style={styles.logText}>{diary[key].diary}</Text>
+            <View style={styles.submit}>
             <TouchableOpacity style={styles.submitPress} onPress={() => deleteLog(key)}>
-            <Text style={styles.submitText}>삭제</Text>
+            <Fontisto name="trash" size={15} color="black" />
           </TouchableOpacity>
-            
+            </View>
             
             </View>
+            
           )}
         
 
@@ -104,21 +107,11 @@ const styles = StyleSheet.create({
   submit: {
     flex: 1.3,
     paddingRight: 10,
-    alignItems: "flex-end",
+    alignItems: "stretch",
     justifyContent: "center",
+    flexDirection: "column",
+    
   },
-  submitPress: {
-    width: "25%",
-    paddingVertical: 10,
-    borderRadius: 20,
-    alignItems: "center",
-    backgroundColor: "white",
-  },
-  submitText: {
-    fontSize: 22,
-    fontWeight: "500",
-  },
-
 
   container: {
     flex: 1,
@@ -152,8 +145,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   logDay: {
-    fontSize: 16,
-    fontWeight: "400",
+    fontSize: 13,
+    fontWeight: "200",
   },
 
   logText: {

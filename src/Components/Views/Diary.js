@@ -30,7 +30,6 @@ export default function Diary(){
   const [mood, setMood] = useState("");
   const [diary, setDiary] = useState("");
   const [dailyLog, setDailyLog] = useState({});
-  const [todaySave, setTodaySave] = useState(false);
 
   const today = new Date();
   const month = today.getMonth();
@@ -65,20 +64,15 @@ export default function Diary(){
       return
     }
     setDiary(text);
-    //
     await saveLog(text);
     
-    //
   };
-
-  
-
 
   const onPressSave = async() => {
     Alert.alert(
       "Save your daily diary?",
       "You can't edit today's diary once you save", [
-        { text: "Cancel" },
+        { text: "Cancel" , style: "destructive"},
         { text: "Yes", onPress: () => {
             Alert.alert("Saved");
             const newDailyLog = {
@@ -87,10 +81,10 @@ export default function Diary(){
             };
             setDailyLog(newDailyLog);
             saveLog(newDailyLog);
-            setTodaySave(true);
-            //
+            
+            
             setText("");
-            //
+            
           }
         },
       ]
