@@ -28,4 +28,12 @@
 
 1. expo 앱 다운 (iOS는 expo go / Android는 expo)
 
-2. QR코드 스캔
+2. 다음 url로 이동 (exp://exp.host/@angela512/wda)
+
+3. 화면에 뜬 QR코드 스캔
+
+## 사용 화면
+
+<img src="https://user-images.githubusercontent.com/57383916/144418073-8f0f7e41-b4e4-4a42-9fa0-e25bc17850a7.png" width="200" height="400" /><img src="https://user-images.githubusercontent.com/57383916/144418324-d4924fee-a56e-49d4-82a4-f259406d32f2.png" width="200" height="400" />
+
+<img src="https://user-images.githubusercontent.com/57383916/144418390-fc0262f8-1743-4d4d-bbba-8009a601e20c.png" width="200" height="400" /><img src="https://user-images.githubusercontent.com/57383916/144418749-3032ea6e-0c5f-4d23-856c-268e7f7107bb.png" width="200" height="400" />
