@@ -58,12 +58,12 @@ export default function Todo() {
       }
     }
     catch(e){
-      Alert.alert("Error", "Todo Function is not loaded!");
+      Alert.alert("Error", "Todo Function is not loaded");
       console.log(e);
     }
   };
   
-  useEffect(() => { //component가 mount될때 실행
+  useEffect(() => { 
     loadToDos();
   }, []);
 
@@ -75,23 +75,14 @@ export default function Todo() {
       ...toDos,
       [Date.now()]: {text, checked: false},
     };
-    //save to do
     setToDos(newToDos);
     await saveToDos(newToDos);
     setText("");
   };
 
   const deleteToDo = (key) => {
-    if(Platform.OS === "web"){
-      const ok = confirm("Do you want to delete this TO DO?");
-      if(ok){
-        const newToDos = { ...toDos };
-        delete newToDos[key];
-        setToDos(newToDos);
-        saveToDos(newToDos);
-      }
-    } 
-    else{
+    
+    
       Alert.alert(
         "Delete", 
         "Are you sure?", [
@@ -106,7 +97,7 @@ export default function Todo() {
           },
         },
       ]);
-    }
+    
   };
 
   
@@ -176,7 +167,7 @@ const styles = StyleSheet.create({
   },
   dateText: {
     fontSize: 28,
-    fontWeight: "600",
+    fontWeight: "300",
   },
   toDoBox: {
     flex: 9.5,

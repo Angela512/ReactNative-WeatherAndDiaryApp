@@ -41,9 +41,9 @@ export default function History(){
   useEffect(() => {
     loadDiary();
   }, []);
-
+  
   const deleteLog = (key) => {
-    try{
+    
       Alert.alert(
         "Delete",
         "Are you sure?", [
@@ -59,12 +59,6 @@ export default function History(){
           }
         ]
       );
-      
-    }
-    catch(e){
-      Alert.alert("Error", "History is empty");
-      console.log(e);
-    }
   };
 
 
@@ -72,16 +66,17 @@ export default function History(){
     <View style={styles.container}>
       <ImageBackground source={IMGBG} style={styles.image}>
         <ScrollView contentContainerStyle={styles.logBox}>
-          {diary && Object.keys(diary).map((key) =>
+          {Object.keys(diary).map((key) =>
           
             <View key={key} style={styles.diary}>
               <View style={styles.dayAndMoodBox}>
-                <Text style={styles.logDay}>{key.substring(4, 15)}</Text>
+                <Text style={styles.logDay}>{key.substring(4,10)} {key.substring(0,3)} {key.substring(16,21)}</Text>
                 <FontAwesome5 name={moods[diary[key].mood]} size={17} color="black"/>
               </View>
+              <View style={styles.DiaryAndDeleteBox}>
               <Text style={styles.logText}>{diary[key].diary}</Text>
-            <View style={styles.submit}>
-            <TouchableOpacity style={styles.submitPress} onPress={() => deleteLog(key)}>
+            
+            <TouchableOpacity style={styles.deleteBtn} onPress={() => deleteLog(key)}>
             <Fontisto name="trash" size={15} color="black" />
           </TouchableOpacity>
             </View>
@@ -89,13 +84,6 @@ export default function History(){
             </View>
             
           )}
-        
-
-        
-          
-          
-          
-        
 
         </ScrollView>
       </ImageBackground>
@@ -104,15 +92,18 @@ export default function History(){
 }
 
 const styles = StyleSheet.create({
-  submit: {
+  DiaryAndDeleteBox: {
     flex: 1.3,
-    paddingRight: 10,
-    alignItems: "stretch",
-    justifyContent: "center",
-    flexDirection: "column",
+    
+    width: SCREEN_WIDTH-40,
+  },
+  deleteBtn: {
+    paddingVertical: 5,
+    borderRadius: 20,
+    alignItems: "flex-end",
+    backgroundColor: "white",
     
   },
-
   container: {
     flex: 1,
   },
@@ -132,7 +123,7 @@ const styles = StyleSheet.create({
     backgroundColor: historyTheme.historyBg,
     width: SCREEN_WIDTH-10,
     marginBottom: 10,
-    paddingVertical: 20,
+    paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 15,
     alignItems: "flex-start",
@@ -150,7 +141,9 @@ const styles = StyleSheet.create({
   },
 
   logText: {
-    fontSize: 20,
-    fontWeight: "400",
+    fontSize: 15,
+    fontWeight: "300",
+    paddingVertical: 5,
+    paddingRight: 5,
   }
 });

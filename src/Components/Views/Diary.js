@@ -30,7 +30,7 @@ export default function Diary(){
   const [mood, setMood] = useState("");
   const [diary, setDiary] = useState("");
   const [dailyLog, setDailyLog] = useState({});
-
+  
   const today = new Date();
   const month = today.getMonth();
   const date = today.getDate();
@@ -59,16 +59,16 @@ export default function Diary(){
     loadLogs();
   }, []);
 
-  const addDiary = async() => {
+  const addDiary = () => {
     if(text === ""){
       return
     }
     setDiary(text);
-    await saveLog(text);
+    saveLog(text);
     
   };
 
-  const onPressSave = async() => {
+  const onPressSave = () => {
     Alert.alert(
       "Save your daily diary?",
       "You can't edit today's diary once you save", [
@@ -79,30 +79,32 @@ export default function Diary(){
               ...dailyLog,
               [today] : { diary, mood },
             };
+            
+
             setDailyLog(newDailyLog);
-            saveLog(newDailyLog);
-            
-            
+             saveLog(newDailyLog);
             setText("");
+            
             
           }
         },
       ]
     );
+  
+
   };
 
   return (
     <View style={styles.container}>
       <ImageBackground source={IMGBG} style={styles.image}>
         <View style={styles.date}>
-          <Text style={styles.dateText}>{mon[month]}. {date}</Text>
+          <Text style={styles.dateText}>{mon[month]} {date}</Text>
         </View>
 
         <View style={styles.diary}>
           
           <View style={styles.inputBox}>
             <TextInput
-            //editable={false}
               editable={true}
               onChangeText={onChangeText}
               value={text}
@@ -240,7 +242,7 @@ const styles = StyleSheet.create({
   },
   dateText: {
     fontSize: 28,
-    fontWeight: "600",
+    fontWeight: "300",
   },
 
   diary: {
