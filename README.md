@@ -28,7 +28,7 @@
 
 1. expo 앱 다운 (iOS는 expo go / Android는 expo)
 
-2. 다음 [url](exp://exp.host/@angela512/wda)로 이동
+2. 다음 url로 이동 (exp://exp.host/@angela512/wda)
 
 3. 화면에 뜬 QR코드 스캔
 
