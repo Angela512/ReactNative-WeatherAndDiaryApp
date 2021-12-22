@@ -248,10 +248,14 @@ export default function Diary(){
         </View>
 
         <View style={styles.submit}>
+          <View style={{
+            width: webWidth >= 910 ? 900: webWidth - 10,
+            alignItems: "flex-end",
+          }}>
           <TouchableOpacity onPress={onPressSave} style={styles.submitPress}>
             <Text style={styles.submitText}>Save ✓</Text>
           </TouchableOpacity>
-          
+          </View>
         </View>
       </ImageBackground>
     </View>
@@ -259,6 +263,11 @@ export default function Diary(){
 }
 
 const styles = StyleSheet.create({
+  submitstyle: {
+    width: 900,
+    alignItems: "flex-end",
+  },
+
   container: {
     flex: 1,
   },
@@ -331,8 +340,9 @@ const styles = StyleSheet.create({
   submit: {
     flex: 1.3,
     paddingRight: 10,
-    alignItems: "flex-end",
-   //alignItems: 'center',
+  //  width: 900,
+  //  alignItems: "flex-end",
+  alignItems: "center",
     justifyContent: "center",
     marginLeft: 10,
     
