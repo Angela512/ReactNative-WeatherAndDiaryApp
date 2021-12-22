@@ -34,6 +34,20 @@
 
 ## 사용 화면
 
+* 모바일
+
 <img src="https://user-images.githubusercontent.com/57383916/144418073-8f0f7e41-b4e4-4a42-9fa0-e25bc17850a7.png" width="200" height="400" /><img src="https://user-images.githubusercontent.com/57383916/144418324-d4924fee-a56e-49d4-82a4-f259406d32f2.png" width="200" height="400" />
 
 <img src="https://user-images.githubusercontent.com/57383916/144418390-fc0262f8-1743-4d4d-bbba-8009a601e20c.png" width="200" height="400" /><img src="https://user-images.githubusercontent.com/57383916/144418749-3032ea6e-0c5f-4d23-856c-268e7f7107bb.png" width="200" height="400" />
+
+* 웹 브라우저
+
+<img src="https://user-images.githubusercontent.com/57383916/147067564-733e8269-f3c8-4382-b430-985251100ff6.jpg" width="400" height="200" /><img src="https://user-images.githubusercontent.com/57383916/147067710-05859722-d784-403d-b786-40ced2039717.jpg" width="200" height="400" />
+
+<img src="https://user-images.githubusercontent.com/57383916/147067856-14efe4fa-9936-450c-a8e5-7c8bc78f4342.jpg" width="400" height="200" /><img src="https://user-images.githubusercontent.com/57383916/147067941-90d5ca93-65be-4a77-9512-b39be2c584b0.jpg" width="400" height="200" />
+
+* 크기를 줄이면 그에 맞게 줄어듭니다.
+
+<img src="https://user-images.githubusercontent.com/57383916/147068188-1271e4f9-b04d-499d-abd2-5e5be732cc4d.jpg" width="300" height="400" /><img src="https://user-images.githubusercontent.com/57383916/147068282-e640232c-75dc-4458-8286-cea5d6318305.jpg" width="300" height="400" />
+
+<img src="https://user-images.githubusercontent.com/57383916/147068356-62f18d07-9d0f-407b-98bf-66ce6fd36f41.jpg" width="300" height="400" /><img src="https://user-images.githubusercontent.com/57383916/147068417-0494ff7a-325d-4aec-af8d-6ae363e9aeb6.jpg" width="300" height="400" />
