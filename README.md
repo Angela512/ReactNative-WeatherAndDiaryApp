@@ -1,6 +1,7 @@
 # ReactNative-WeatherAndDiaryApp
 
-날씨와 To-Do List, Diary와 History 등 4가지 기능을 제공하는 React Native App입니다.
+날씨와 To-Do List, Diary와 History 등 4가지 기능을 제공하는 Expo App입니다.
+모바일과 웹에서 모두 동작합니다.
 
 ## 제공하는 정보
 
