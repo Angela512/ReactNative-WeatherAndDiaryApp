@@ -158,9 +158,9 @@ export default function Weather() {
                     {currents.map((current, index) =>
                       <View key={index} style={{ //currentIcon
                         width: webWidth >= 910 ? 900: webWidth - 10,
-    paddingHorizontal: 30,
-    flexDirection: "row",
-    justifyContent: "space-between",
+                        paddingHorizontal: 30,
+                        flexDirection: "row",
+                        justifyContent: "space-between",
                       }}>
                         <Text style={styles.currentTemp}>{parseFloat(current.temp).toFixed(1)}°</Text>
                         <View style={styles.currentDescriptionBox}>
@@ -179,10 +179,13 @@ export default function Weather() {
                       </View>
                   </View>
                 </View>
-                <View style={styles.hourBox}>
+                <View style={{ //hourbox
+                  flex: 1.8,
+                  alignItems: "center",
+                }}>
                   <ScrollView horizontal showsHorizontalScrollIndicator={false} 
-                  contentContainerStyle={{ //hourly not working
-                    width: webWidth >= 910 ? 900: webWidth - 10,
+                  contentContainerStyle={{ //hourly
+                  width: webWidth >= 910 ? 900: webWidth - 10,
                   flexDirection: "row",
                   paddingVertical: 10,
                   alignItems: "center",
@@ -192,9 +195,9 @@ export default function Weather() {
                     {hours.map((hour, index) =>
                       <View key={index} style={{ //everyhour
                         flexDirection: "column",
-                      width: 80,
-                      alignItems: "center",
-                      paddingHorizontal: 5,
+                        width: 80,
+                        alignItems: "center",
+                        paddingHorizontal: 5,
                       }}>
                         <Text style={styles.hourlyTime}>{new Date(hour.dt*1000).getHours()}시</Text>
                         <Fontisto name={icons[hour.weather[0].main].iconName} size={25} color={icons[hour.weather[0].main].color} style={{marginTop: 10}}/>
@@ -287,12 +290,14 @@ const styles = StyleSheet.create({
   currentStatus: {
     marginVertical: 5,
   },
+  /*
   currentIcon: {
     width: SCREEN_WIDTH,
     paddingHorizontal: 30,
     flexDirection: "row",
     justifyContent: "space-between",
   },
+  */
   currentTemp: {
     fontSize: 80,
     fontWeight: "100",
@@ -317,7 +322,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '200',
   },
-
+/*
   hourBox: {
     flex: 1.8,
   },
@@ -326,9 +331,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     alignItems: "center",
     borderBottomWidth: 0.5,
-    
     borderColor: weatherTheme.border,
-    
   },
   everyHour: {
     flexDirection: "column",
@@ -336,6 +339,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 5,
   },
+  */
   hourlyTime: {
     fontSize: 20,
     fontWeight: '200',
@@ -358,6 +362,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
   },
+  /*
   everyWeek: {
     width: SCREEN_WIDTH,
     alignItems: "center",
@@ -369,6 +374,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderColor: weatherTheme.weeklyBorder,
   },
+  */
   date: {
     fontSize: 24,
     fontWeight: "200",
