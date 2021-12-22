@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ImageBackground, StyleSheet, Text, View, TextInput, Dimensions, TouchableOpacity, Keyboard, Alert } from 'react-native';
+import { ImageBackground, Platform, StyleSheet, Text, View, TextInput, Dimensions, TouchableOpacity, Keyboard, Alert } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import IMGBG from '../../Images/DiaryBg.jpg';
@@ -39,6 +39,18 @@ export default function Diary(){
   const onChangeMood = (sticker) => setMood(sticker);
   const dismissKeyboard = () => Keyboard.dismiss();
 
+  const [webWidth, setWebWidth] = useState(Dimensions.get("window").width);
+  
+  useEffect(() => {
+    const updateLayout = () => {
+      setWebWidth(Dimensions.get("window").width);
+    };
+    Dimensions.addEventListener("change", updateLayout);
+    return () => {
+      Dimensions.removeEventListener("change", updateLayout);
+    };
+  });
+
   const saveLog = async(toSave) => {
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
   };
@@ -69,29 +81,37 @@ export default function Diary(){
   };
 
   const onPressSave = () => {
-    Alert.alert(
-      "Save your daily diary?",
-      "You can't edit today's diary once you save", [
-        { text: "Cancel" , style: "destructive"},
-        { text: "Yes", onPress: () => {
-            Alert.alert("Saved");
-            const newDailyLog = {
-              ...dailyLog,
-              [today] : { diary, mood },
-            };
-            
-
-            setDailyLog(newDailyLog);
-             saveLog(newDailyLog);
-            setText("");
-            
-            
-          }
-        },
-      ]
-    );
-  
-
+    if(Platform.OS === "web"){
+      const ok = confirm("Do you want to save your diary?");
+      if(ok){
+        const newDailyLog = {
+          ...dailyLog,
+          [today] : { diary, mood },
+        };
+        setDailyLog(newDailyLog);
+        saveLog(newDailyLog);
+        setText("");
+        
+      }
+    } else {
+      Alert.alert(
+        "Save your diary?",
+        "You can't edit today's diary once you save", [
+          { text: "Cancel" , style: "destructive"},
+          { text: "Yes", onPress: () => {
+              Alert.alert("Saved");
+              const newDailyLog = {
+                ...dailyLog,
+                [today] : { diary, mood },
+              };
+              setDailyLog(newDailyLog);
+              saveLog(newDailyLog);
+              setText("");
+            }
+          },
+        ]
+      );
+    }
   };
 
   return (
@@ -110,8 +130,20 @@ export default function Diary(){
               value={text}
               placeholder={"Write down here"}
               multiline={true}
-              style={styles.input} />
-              <TouchableOpacity onPress={addDiary} onPressOut={dismissKeyboard} style={styles.textBtn}>
+              style={{
+                width : webWidth >= 910 ? 900: webWidth - 10,
+
+                minHeight: "40%",
+                backgroundColor: "white",
+                textAlignVertical: "top",
+                paddingVertical: 30,
+                paddingHorizontal: 30,
+                marginVertical: 10,
+                borderRadius: 30,
+                opacity: 0.85,
+                fontSize: 18,
+              }} />
+              <TouchableOpacity style={styles.textBtn} onPress={addDiary} onPressOut={dismissKeyboard}>
                 <Text style={styles.DoneText}>Done</Text>
               </TouchableOpacity>
           </View>
@@ -120,7 +152,13 @@ export default function Diary(){
 
         <View style={styles.mood}>
           <Text style={styles.moodText}>Select Your Mood</Text>
-          <View style={styles.moodBox}>
+          <View style={{
+            width : webWidth >= 910 ? 900: webWidth - 10,
+            flexDirection: "row",
+            paddingHorizontal: 20,
+            paddingVertical: 20,
+            justifyContent: "space-between",
+          }}>
             
             <TouchableOpacity
               onPress={() => onChangeMood("Excited")}
@@ -210,7 +248,6 @@ export default function Diary(){
         </View>
 
         <View style={styles.submit}>
-         
           <TouchableOpacity onPress={onPressSave} style={styles.submitPress}>
             <Text style={styles.submitText}>Save ✓</Text>
           </TouchableOpacity>
@@ -252,6 +289,7 @@ const styles = StyleSheet.create({
   inputBox: {
     alignItems: "flex-end",
   },
+  /*
   input: {
     minHeight: "40%",
     minWidth: SCREEN_WIDTH-10,
@@ -264,6 +302,7 @@ const styles = StyleSheet.create({
     opacity: 0.85,
     fontSize: 18,
   },
+  */
   textBtn: {
     margin: 10,
     alignItems: "center",
@@ -288,22 +327,19 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: "300",
   },
-  moodBox: {
-    flexDirection: "row",
-    width: SCREEN_WIDTH,
-    paddingHorizontal: 20,
-    paddingVertical: 20,
-    justifyContent: "space-between",
-  },
-
+  
   submit: {
     flex: 1.3,
     paddingRight: 10,
     alignItems: "flex-end",
+   //alignItems: 'center',
     justifyContent: "center",
+    marginLeft: 10,
+    
   },
+  
   submitPress: {
-    width: "25%",
+    width: "100px",
     paddingVertical: 10,
     borderRadius: 20,
     alignItems: "center",

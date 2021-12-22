@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useState, useEffect }from 'react';
-import { ImageBackground, StyleSheet, ScrollView, Text, View, Alert, TouchableOpacity, Dimensions } from 'react-native';
+import { ImageBackground, Platform, StyleSheet, ScrollView, Text, View, Alert, TouchableOpacity, Dimensions } from 'react-native';
 import IMGBG from '../../Images/HistoryBg.jpg';
 import { historyTheme } from '../colors';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -41,9 +41,29 @@ export default function History(){
   useEffect(() => {
     loadDiary();
   }, []);
+
+  const [webWidth, setWebWidth] = useState(Dimensions.get("window").width);
+
+  useEffect(() => {
+    const updateLayout = () => {
+      setWebWidth(Dimensions.get("window").width);
+    };
+    Dimensions.addEventListener("change", updateLayout);
+    return () => {
+      Dimensions.removeEventListener("change", updateLayout);
+    };
+  });
   
   const deleteLog = (key) => {
-    
+    if(Platform.OS === "web"){
+      const ok = confirm("Do you want to delete this To-Do?");
+      if(ok){
+        const newDiary = {...diary};
+        delete newDiary[key];
+        setDiary(newDiary);
+        saveDiary(newDiary);
+      }
+    } else {
       Alert.alert(
         "Delete",
         "Are you sure?", [
@@ -59,6 +79,7 @@ export default function History(){
           }
         ]
       );
+    }
   };
 
 
@@ -68,16 +89,35 @@ export default function History(){
         <ScrollView contentContainerStyle={styles.logBox}>
           {Object.keys(diary).map((key) =>
           
-            <View key={key} style={styles.diary}>
-              <View style={styles.dayAndMoodBox}>
+            <View key={key} style={{ //diary
+              backgroundColor: historyTheme.historyBg,
+              width: webWidth >= 910 ? 900: webWidth - 10,
+              marginBottom: 10,
+              paddingVertical: 10,
+              paddingHorizontal: 15,
+              borderRadius: 15,
+              alignItems: "flex-start",
+              justifyContent: "center",
+            }}>
+              
+              <View style={{ //dayAndMoodBox
+                flexDirection: "row",
+                width: webWidth >= 910 ? 870: webWidth - 40,
+                justifyContent: "space-between",
+              }}>
                 <Text style={styles.logDay}>{key.substring(4,10)} {key.substring(0,3)} {key.substring(16,21)}</Text>
                 <FontAwesome5 name={moods[diary[key].mood]} size={17} color="black"/>
               </View>
-              <View style={styles.DiaryAndDeleteBox}>
+              <View style={{ //DiaryAndDeleteBox
+                flex: 1.3,
+                width: webWidth >= 910 ? 870: webWidth - 40,
+              }}>
               <Text style={styles.logText}>{diary[key].diary}</Text>
             
-            <TouchableOpacity style={styles.deleteBtn} onPress={() => deleteLog(key)}>
-            <Fontisto name="trash" size={15} color="black" />
+            <TouchableOpacity style={styles.deleteBtn} 
+            onPress={() => deleteLog(key)}
+            hitSlop={{ top: 10, left: 10, bottom: 10, right: 10 }} >
+            <Fontisto name="trash" size={15} color={historyTheme.trashIcon} />
           </TouchableOpacity>
             </View>
             
@@ -92,11 +132,12 @@ export default function History(){
 }
 
 const styles = StyleSheet.create({
+  /*
   DiaryAndDeleteBox: {
     flex: 1.3,
-    
     width: SCREEN_WIDTH-40,
   },
+  */
   deleteBtn: {
     paddingVertical: 5,
     borderRadius: 20,
@@ -118,7 +159,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
   },
-
+/*
   diary: {
     backgroundColor: historyTheme.historyBg,
     width: SCREEN_WIDTH-10,
@@ -129,7 +170,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "center",
   },
-
+*/
   dayAndMoodBox: {
     flexDirection: "row",
     width: SCREEN_WIDTH-40,

@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView, Dimensions, Alert, ImageBackground } from 'react-native';
+import { StyleSheet, Platform, Text, View, TextInput, TouchableOpacity, ScrollView, Dimensions, Alert, ImageBackground } from 'react-native';
 import { toDoTheme } from "../colors";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Feather } from '@expo/vector-icons';
@@ -8,7 +8,6 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 import IMGBG from '../../Images/ToDoBg.jpg';
 
 const STORAGE_KEY = "@toDos";
-const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 const mon = {
   "0" : "JAN",
@@ -29,6 +28,17 @@ export default function Todo() {
   const [text, setText] = useState("");
   const [toDos, setToDos] = useState({});
   const onChangeText = (payload) => setText(payload);
+  const [webWidth, setWebWidth] = useState(Dimensions.get("window").width);
+
+  useEffect(() => {
+    const updateLayout = () => {
+      setWebWidth(Dimensions.get("window").width);
+    };
+    Dimensions.addEventListener("change", updateLayout);
+    return () => {
+      Dimensions.removeEventListener("change", updateLayout);
+    };
+  });
 
   const today = new Date();
   const month = today.getMonth();
@@ -62,6 +72,8 @@ export default function Todo() {
       console.log(e);
     }
   };
+
+
   
   useEffect(() => { 
     loadToDos();
@@ -81,8 +93,15 @@ export default function Todo() {
   };
 
   const deleteToDo = (key) => {
-    
-    
+    if(Platform.OS === "web"){
+      const ok = confirm("Do you want to delete this To-Do?");
+      if(ok){
+        const newToDos = { ...toDos };
+        delete newToDos[key];
+        setToDos(newToDos);
+        saveToDos(newToDos);
+      }
+    } else{
       Alert.alert(
         "Delete", 
         "Are you sure?", [
@@ -97,12 +116,10 @@ export default function Todo() {
           },
         },
       ]);
-    
+    }
+        
   };
 
-  
-    
-  
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -118,11 +135,30 @@ export default function Todo() {
         onChangeText={onChangeText}
         value={text}
         placeholder={"Add a To Do"} 
-        style={styles.addToDo} />
-      
+        style={{
+          width : webWidth >= 910 ? 900: webWidth - 10,
+          backgroundColor: toDoTheme.addToDoBox,
+          paddingVertical: 15,
+          paddingHorizontal: 20,
+          borderRadius: 15,
+          marginVertical: 5,
+          fontSize: 18,
+        }} 
+          />
+        
         <ScrollView>
           {Object.keys(toDos).map((key) => 
-            <View key={key} style={styles.toDo}>
+            <View key={key} style={{
+              width: webWidth >= 910 ? 900: webWidth - 10,
+              backgroundColor: toDoTheme.toDoBg,
+              marginVertical: 5,
+              paddingVertical: 20,
+              paddingHorizontal: 15,
+              borderRadius: 15,
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between"
+            }}>
               <BouncyCheckbox 
                 isChecked={toDos[key].checked} 
                 onPress={() => handleCheck(key)}
@@ -157,6 +193,7 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     justifyContent: "center",
   },
+  
   date: {
     flex: 0.7,
     paddingVertical: 10,
@@ -165,6 +202,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     borderBottomWidth: 1,
   },
+  
   dateText: {
     fontSize: 28,
     fontWeight: "300",
@@ -175,19 +213,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
+  /*
   addToDo: {
     backgroundColor: toDoTheme.addToDoBox,
-    width: SCREEN_WIDTH-10,
     paddingVertical: 15,
     paddingHorizontal: 20,
     borderRadius: 15,
     marginVertical: 5,
     fontSize: 18,
   },
+  
   toDo: {
     backgroundColor: toDoTheme.toDoBg,
-    width: SCREEN_WIDTH-10,
-    marginBottom: 10,
+    marginVertical: 5,
     paddingVertical: 20,
     paddingHorizontal: 15,
     borderRadius: 15,
@@ -195,6 +233,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between"
   },
+  */
+  
   toDoText: {
     color: "white",
     fontSize: 15,
