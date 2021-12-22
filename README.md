@@ -42,7 +42,7 @@
 
 * 웹 브라우저
 
-<img src="https://user-images.githubusercontent.com/57383916/147067564-733e8269-f3c8-4382-b430-985251100ff6.jpg" width="400" height="200" /><img src="https://user-images.githubusercontent.com/57383916/147067710-05859722-d784-403d-b786-40ced2039717.jpg" width="200" height="400" />
+<img src="https://user-images.githubusercontent.com/57383916/147067564-733e8269-f3c8-4382-b430-985251100ff6.jpg" width="400" height="200" /><img src="https://user-images.githubusercontent.com/57383916/147067710-05859722-d784-403d-b786-40ced2039717.jpg" width="400" height="200" />
 
 <img src="https://user-images.githubusercontent.com/57383916/147067856-14efe4fa-9936-450c-a8e5-7c8bc78f4342.jpg" width="400" height="200" /><img src="https://user-images.githubusercontent.com/57383916/147067941-90d5ca93-65be-4a77-9512-b39be2c584b0.jpg" width="400" height="200" />
 
