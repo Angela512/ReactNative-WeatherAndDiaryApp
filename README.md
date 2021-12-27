@@ -47,7 +47,7 @@
 
 <img src="https://user-images.githubusercontent.com/57383916/147067856-14efe4fa-9936-450c-a8e5-7c8bc78f4342.jpg" width="400" height="200" /><img src="https://user-images.githubusercontent.com/57383916/147067941-90d5ca93-65be-4a77-9512-b39be2c584b0.jpg" width="400" height="200" />
 
-* 크기를 줄이면 그에 맞게 줄어듭니다.
+* 브라우저의 크기가 900px보다 작아지면 그에 맞게 줄어듭니다.
 
 <img src="https://user-images.githubusercontent.com/57383916/147068188-1271e4f9-b04d-499d-abd2-5e5be732cc4d.jpg" width="300" height="400" /><img src="https://user-images.githubusercontent.com/57383916/147068282-e640232c-75dc-4458-8286-cea5d6318305.jpg" width="300" height="400" />
 
