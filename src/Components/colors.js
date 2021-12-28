@@ -1,6 +1,9 @@
 export const weatherTheme = {
     weeklyBorder: "#e6e1e1",    // dimgrey
     border: "#e6e1e1",  // darkslategrey
+    cityText: "#2e2d2d", // darkgrey
+    currentTemp: "#000000", //black
+    dateAndTempText: "#FFFFFF", //white
 };
 
 export const diaryTheme = {
@@ -21,4 +24,5 @@ export const toDoTheme = {
 
 export const historyTheme = {
     historyBg: "#FFFFFF",  // white
+    trashIcon: "#E00000"   //red
 };
