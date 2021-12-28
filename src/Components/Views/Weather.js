@@ -189,7 +189,6 @@ export default function Weather() {
                   width: webWidth >= 910 ? 900 : Platform.OS === 'ios' ? null : webWidth - 10,
                   flexDirection: "row",
                   paddingVertical: 10,
-                  //alignItems: Platform.OS === "web" ? "center" : null,
                   borderBottomWidth: 0.5,
                   borderColor: weatherTheme.border,
                   }}>
@@ -241,7 +240,7 @@ const styles = StyleSheet.create({
   loading: {
     width: SCREEN_WIDTH,
     marginTop: '80%',
-    alignItems: "flex-end"
+    alignItems: "center"
   },
 
   container2: {
@@ -321,16 +320,6 @@ const styles = StyleSheet.create({
     flex: 1.8,
     alignItems: "center",
   },
-
-  /*
-  hourly: {
-    flexDirection: "row",
-    paddingVertical: 10,
-    alignItems: "center",
-    borderBottomWidth: 0.5,
-    borderColor: weatherTheme.border,
-  },
-  */
   everyHour: {
     flexDirection: "column",
     width: 80,
@@ -360,19 +349,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
   },
-  /*
-  everyWeek: {
-    width: SCREEN_WIDTH,
-    alignItems: "center",
-    justifyContent: "space-between",
-    flexDirection: "row",
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-    
-    borderBottomWidth: 0.5,
-    borderColor: weatherTheme.weeklyBorder,
-  },
-  */
   date: {
     fontSize: 24,
     fontWeight: "200",
