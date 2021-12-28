@@ -136,6 +136,7 @@ export default function Weather() {
         hour.splice(12);
       //setHours(hour.splice(12));
         setHours(hour);
+
     };
 
     return (
@@ -148,7 +149,9 @@ export default function Weather() {
           <View style={styles.container2}>
             <ImageBackground source={IMGBG} style={styles.image}>
               <View style={styles.city}>
+                <View>
                 <Text style={styles.cityText}>{city}</Text>
+                </View>
               </View>
     
               <View style={styles.weather}>
@@ -157,10 +160,11 @@ export default function Weather() {
                   <View style={styles.currentStatus}>
                     {currents.map((current, index) =>
                       <View key={index} style={{ //currentIcon
-                        width: webWidth >= 910 ? 900: webWidth - 10,
                         paddingHorizontal: 30,
                         flexDirection: "row",
                         justifyContent: "space-between",
+                        width: webWidth >= 910 ? 900: webWidth - 10,
+                        
                       }}>
                         <Text style={styles.currentTemp}>{parseFloat(current.temp).toFixed(1)}°</Text>
                         <View style={styles.currentDescriptionBox}>
@@ -179,26 +183,18 @@ export default function Weather() {
                       </View>
                   </View>
                 </View>
-                <View style={{ //hourbox
-                  flex: 1.8,
-                  alignItems: "center",
-                }}>
-                  <ScrollView horizontal showsHorizontalScrollIndicator={false} 
+                <View style={styles.hourBox}>
+                  <ScrollView horizontal showsHorizontalScrollIndicator={true} 
                   contentContainerStyle={{ //hourly
-                  width: webWidth >= 910 ? 900: webWidth - 10,
+                  width: webWidth >= 910 ? 900 : Platform.OS === 'ios' ? null : webWidth - 10,
                   flexDirection: "row",
                   paddingVertical: 10,
-                  alignItems: "center",
+                  //alignItems: Platform.OS === "web" ? "center" : null,
                   borderBottomWidth: 0.5,
                   borderColor: weatherTheme.border,
                   }}>
                     {hours.map((hour, index) =>
-                      <View key={index} style={{ //everyhour
-                        flexDirection: "column",
-                        width: 80,
-                        alignItems: "center",
-                        paddingHorizontal: 5,
-                      }}>
+                      <View key={index} style={styles.everyHour}>
                         <Text style={styles.hourlyTime}>{new Date(hour.dt*1000).getHours()}시</Text>
                         <Fontisto name={icons[hour.weather[0].main].iconName} size={25} color={icons[hour.weather[0].main].color} style={{marginTop: 10}}/>
                         <Text style={styles.hourlyTemp}>{parseFloat(hour.temp).toFixed(1)}°</Text>
@@ -217,7 +213,6 @@ export default function Weather() {
                     flexDirection: "row",
                     paddingVertical: 5,
                     paddingHorizontal: 10,
-                    
                     borderBottomWidth: 0.5,
                     borderColor: weatherTheme.weeklyBorder,
                     }}> 
@@ -246,7 +241,7 @@ const styles = StyleSheet.create({
   loading: {
     width: SCREEN_WIDTH,
     marginTop: '80%',
-    alignItems: "flex-start"
+    alignItems: "flex-end"
   },
 
   container2: {
@@ -263,7 +258,6 @@ const styles = StyleSheet.create({
   city: {
     flex: 0.7,
     flexDirection: "row",
-    width: 900,
     paddingVertical: 10,
     alignItems: "center",
     justifyContent: "center",
@@ -271,7 +265,7 @@ const styles = StyleSheet.create({
   cityText: {
     fontSize: 35,
     fontWeight: "500",
-    color: "#2e2d2d"
+    color: weatherTheme.cityText,
   },
 
   weather: {
@@ -290,18 +284,18 @@ const styles = StyleSheet.create({
   currentStatus: {
     marginVertical: 5,
   },
-  /*
+  
   currentIcon: {
-    width: SCREEN_WIDTH,
     paddingHorizontal: 30,
     flexDirection: "row",
     justifyContent: "space-between",
+    width: 900,
   },
-  */
+  
   currentTemp: {
     fontSize: 80,
     fontWeight: "100",
-    color: "black"
+    color: weatherTheme.currentTemp,
   },
   currentDescriptionBox: {
     marginTop: 10,
@@ -322,10 +316,13 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '200',
   },
-/*
+
   hourBox: {
     flex: 1.8,
+    alignItems: "center",
   },
+
+  /*
   hourly: {
     flexDirection: "row",
     paddingVertical: 10,
@@ -333,23 +330,24 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderColor: weatherTheme.border,
   },
+  */
   everyHour: {
     flexDirection: "column",
     width: 80,
     alignItems: "center",
     paddingHorizontal: 5,
   },
-  */
+  
   hourlyTime: {
     fontSize: 20,
     fontWeight: '200',
-    color: "white",
+    color: weatherTheme.dateAndTempText,
   },
   hourlyTemp: {
     fontSize: 18,
     fontWeight: '200',
     marginTop: 10,
-    color: "white",
+    color: weatherTheme.dateAndTempText,
   },
 
   weekBox: {
@@ -378,7 +376,7 @@ const styles = StyleSheet.create({
   date: {
     fontSize: 24,
     fontWeight: "200",
-    color: "white",
+    color: weatherTheme.dateAndTempText,
   },
   days: {
     fontSize: 24,
@@ -387,6 +385,6 @@ const styles = StyleSheet.create({
   temp: {
     fontSize: 24,
     fontWeight: "200",
-    color: "white",
+    color: weatherTheme.dateAndTempText,
   },
 })
