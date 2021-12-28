@@ -132,12 +132,6 @@ export default function History(){
 }
 
 const styles = StyleSheet.create({
-  /*
-  DiaryAndDeleteBox: {
-    flex: 1.3,
-    width: SCREEN_WIDTH-40,
-  },
-  */
   deleteBtn: {
     paddingVertical: 5,
     borderRadius: 20,
@@ -159,23 +153,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
   },
-/*
-  diary: {
-    backgroundColor: historyTheme.historyBg,
-    width: SCREEN_WIDTH-10,
-    marginBottom: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 15,
-    alignItems: "flex-start",
-    justifyContent: "center",
-  },
-*/
-  dayAndMoodBox: {
-    flexDirection: "row",
-    width: SCREEN_WIDTH-40,
-    justifyContent: "space-between",
-  },
+  
   logDay: {
     fontSize: 13,
     fontWeight: "200",

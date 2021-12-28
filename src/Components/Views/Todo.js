@@ -135,7 +135,7 @@ export default function Todo() {
         onChangeText={onChangeText}
         value={text}
         placeholder={"Add a To Do"} 
-        style={{
+        style={{ //addToDo
           width : webWidth >= 910 ? 900: webWidth - 10,
           backgroundColor: toDoTheme.addToDoBox,
           paddingVertical: 15,
@@ -148,7 +148,7 @@ export default function Todo() {
         
         <ScrollView>
           {Object.keys(toDos).map((key) => 
-            <View key={key} style={{
+            <View key={key} style={{ //toDo
               width: webWidth >= 910 ? 900: webWidth - 10,
               backgroundColor: toDoTheme.toDoBg,
               marginVertical: 5,
@@ -213,30 +213,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
-  /*
-  addToDo: {
-    backgroundColor: toDoTheme.addToDoBox,
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-    borderRadius: 15,
-    marginVertical: 5,
-    fontSize: 18,
-  },
-  
-  toDo: {
-    backgroundColor: toDoTheme.toDoBg,
-    marginVertical: 5,
-    paddingVertical: 20,
-    paddingHorizontal: 15,
-    borderRadius: 15,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between"
-  },
-  */
-  
   toDoText: {
-    color: "white",
     fontSize: 15,
     fontWeight: "500",
   },

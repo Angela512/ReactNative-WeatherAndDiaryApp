@@ -132,7 +132,6 @@ export default function Diary(){
               multiline={true}
               style={{
                 width : webWidth >= 910 ? 900: webWidth - 10,
-
                 minHeight: "40%",
                 backgroundColor: "white",
                 textAlignVertical: "top",
@@ -298,20 +297,6 @@ const styles = StyleSheet.create({
   inputBox: {
     alignItems: "flex-end",
   },
-  /*
-  input: {
-    minHeight: "40%",
-    minWidth: SCREEN_WIDTH-10,
-    backgroundColor: "white",
-    textAlignVertical: "top",
-    paddingVertical: 30,
-    paddingHorizontal: 30,
-    marginVertical: 10,
-    borderRadius: 30,
-    opacity: 0.85,
-    fontSize: 18,
-  },
-  */
   textBtn: {
     margin: 10,
     alignItems: "center",
@@ -340,16 +325,14 @@ const styles = StyleSheet.create({
   submit: {
     flex: 1.3,
     paddingRight: 10,
-  //  width: 900,
-  //  alignItems: "flex-end",
-  alignItems: "center",
+    alignItems: "center",
     justifyContent: "center",
     marginLeft: 10,
     
   },
   
   submitPress: {
-    width: "100px",
+    width: 100,
     paddingVertical: 10,
     borderRadius: 20,
     alignItems: "center",
