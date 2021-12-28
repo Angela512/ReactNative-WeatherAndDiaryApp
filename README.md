@@ -49,6 +49,6 @@
 
 * 브라우저의 크기가 900px보다 작아지면 그에 맞게 줄어듭니다.
 
-<img src="https://user-images.githubusercontent.com/57383916/147068188-1271e4f9-b04d-499d-abd2-5e5be732cc4d.jpg" width="300" height="400" /><img src="https://user-images.githubusercontent.com/57383916/147068282-e640232c-75dc-4458-8286-cea5d6318305.jpg" width="300" height="400" />
+<img src="https://user-images.githubusercontent.com/57383916/147551549-e8bc03a6-06ac-48d1-b5ca-e97c0a73957a.jpg" width="200" height="400" /><img src="https://user-images.githubusercontent.com/57383916/147551592-d5b3ddc6-9415-4e11-8a7b-4cdcc24fde07.jpg" width="200" height="400" />
 
-<img src="https://user-images.githubusercontent.com/57383916/147068356-62f18d07-9d0f-407b-98bf-66ce6fd36f41.jpg" width="300" height="400" /><img src="https://user-images.githubusercontent.com/57383916/147068417-0494ff7a-325d-4aec-af8d-6ae363e9aeb6.jpg" width="300" height="400" />
+<img src="https://user-images.githubusercontent.com/57383916/147551654-8f68a744-4320-403a-82a4-9e0690067d61.jpg" width="200" height="400" /><img src="https://user-images.githubusercontent.com/57383916/147551702-a5bc0b0b-9fee-4134-96fb-57e6413aa54d.jpg" width="200" height="400" />
