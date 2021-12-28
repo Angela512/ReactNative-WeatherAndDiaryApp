@@ -110,14 +110,12 @@ export default function Weather() {
 
         Location.setGoogleApiKey(GEO_API);
         const location = await Location.reverseGeocodeAsync({ latitude, longitude }, { useGoogleMaps: false });
-        
-        if(location[0].city === null){
-          setCity(location[0].region);
-        }
-        else{
+      
+        if(Platform.OS === 'web'){
+          setCity(location[0].district);
+        } else{
           setCity(location[0].city);
-        };
-    
+        }
 
         const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=alerts&appid=${API_KEY}&units=metric`);
         const json = await response.json();
